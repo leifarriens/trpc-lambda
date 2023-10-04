@@ -1,10 +1,5 @@
 import { publicProcedure, router } from './trpc';
-import {
-  CreateAWSLambdaContextOptions,
-  awsLambdaRequestHandler,
-} from '@trpc/server/adapters/aws-lambda';
 import { z } from 'zod';
-import { APIGatewayProxyEventV2 } from 'aws-lambda';
 
 export const appRouter = router({
   hello: publicProcedure.query(async () => {
@@ -13,11 +8,21 @@ export const appRouter = router({
   greet: publicProcedure.input(z.string()).mutation(async ({ input }) => {
     return `Hello ${input}`;
   }),
+  context: publicProcedure.query(async ({ ctx }) => {
+    return ctx;
+  }),
 });
 
-export const createContext = ({
-  event,
-  context,
-}: CreateAWSLambdaContextOptions<APIGatewayProxyEventV2>) => ({}); // no context
+interface CreateContextOptions {
+  clientIp: string | null;
+  token: string | null;
+}
+
+export const createInnerContext = (opts: CreateContextOptions) => {
+  return {
+    clientIp: opts.clientIp,
+    token: opts.token,
+  };
+};
 
 export type AppRouter = typeof appRouter;
