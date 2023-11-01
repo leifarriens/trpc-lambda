@@ -3,12 +3,7 @@ import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { Construct } from 'constructs';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import { Runtime } from 'aws-cdk-lib/aws-lambda';
-import * as aws_apigateway from 'aws-cdk-lib/aws-apigateway';
-import {
-  DomainNameOptions,
-  LambdaIntegration,
-  LambdaRestApi,
-} from 'aws-cdk-lib/aws-apigateway';
+import { LambdaIntegration, LambdaRestApi } from 'aws-cdk-lib/aws-apigateway';
 
 export class TrpcApiStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {

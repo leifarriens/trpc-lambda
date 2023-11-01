@@ -4,7 +4,7 @@ import type { AppRouter } from '../server';
 const trpc = createTRPCProxyClient<AppRouter>({
   links: [
     httpBatchLink({
-      url: 'https://1i5w3n8l71.execute-api.eu-north-1.amazonaws.com/prod/api/trpc',
+      url: `${process.env.API_BASE_URL}/api/trpc`,
     }),
   ],
 });
