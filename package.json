@@ -9,7 +9,7 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "dev": "npx ts-node -T dev-server.ts"
+    "dev": "npx tsx dev-server.ts"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.123",
@@ -32,6 +32,7 @@
     "aws-lambda": "^1.0.7",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.21",
+    "trpc-panel": "^1.3.4",
     "zod": "^3.22.3"
   }
 }
